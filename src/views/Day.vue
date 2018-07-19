@@ -13,7 +13,7 @@
                                     <v-card-text class="dragTarget" @click="$router.push('/event/idasdf')">
                                         <p class="headline">{{event.title}}</p>
                                         <p>{{event.text}}</p>
-                                        <v-layout row class="eventInfo">
+                                        <v-layout row>
                                             <v-flex xs4>
                                                 <p><b>Aufbau</b><br />
                                                 Di, 25.7.18<br />
@@ -64,16 +64,16 @@ export default {
                 ],
             },
             events: [
-                { id: 'ev1', title: 'Hochzeit Maybritt', text: '18:00, Lua Pauline' },
-                { id: 'ev2', title: 'Hochzeit Kapsers', text: '20:00, Marschiertor' },
-                { id: 'ev3', title: 'Firmenfeier Lindt', text: '19:00, Lindt' },
-                { id: 'ev4', title: 'Geburtstag Rainer', text: '18:00, Paulaner Weg 12' },
+                { id: 'ev1', title: 'Hochzeit Maybritt', text: 'Lua Pauline' },
+                { id: 'ev2', title: 'Hochzeit Kapsers', text: 'Marschiertor' },
+                { id: 'ev3', title: 'Firmenfeier Lindt', text: 'Lindt' },
+                { id: 'ev4', title: 'Geburtstag Rainer', text: 'Paulaner Weg 12' },
                 // { id: 'ev5', title: 'Geburtstag Rainer', text: '18:00, Paulaner Weg 12' },
                 // { id: 'ev6', title: 'Geburtstag Rainer', text: '18:00, Paulaner Weg 12' },
                 // { id: 'ev7', title: 'Geburtstag Rainer', text: '18:00, Paulaner Weg 12' },
                 // { id: 'ev8', title: 'Geburtstag Rainer', text: '18:00, Paulaner Weg 12' },
                 // { id: 'ev9', title: 'Geburtstag Rainer', text: '18:00, Paulaner Weg 12' },
-                { id: 'ev10', title: 'Geburtstag Meier', text: '19:00, Senfter Weg 12' },
+                { id: 'ev10', title: 'Geburtstag Meier', text: 'Senfter Weg 12' },
             ],
         };
         Object.keys(res.chips).forEach((key) => {
