@@ -3,28 +3,37 @@
         <v-container fluid>
             <v-layout row>
                 <v-flex xs8 offset-xs2>
-                    <h1 class="headline">Hochzeit Maybritt</h1>
+                    <v-btn icon style="float: right;">
+                        <v-icon>edit</v-icon>
+                    </v-btn>
+                    <h1 class="headline">{{event.title}}</h1>
                     <a @click="$router.go(-1)">Zurück</a> <br/> <br/>
-                    <p>Lua Pauline</p>
+                    <p>{{event.adress}}</p>
                     <p>
-                        <b>Die Kunden wünschen sich ein extra Mikrophon</b>
+                        <b>{{event.note}}</b>
                     </p>
                     <v-container fluid>
                         <v-layout row>
                             <v-flex xs4>
                                 <p>
-                                    <span class="subheading">Aufbau</span><br /><span>Bari</span><br /> Di, 25.7.18<br /> 18:00-24:00
+                                    <span class="subheading">Aufbau</span><br />
+                                    <span>{{users[event.setup.user].name}}</span><br />
+                                    {{event.setup.start | moment('DD.MM.YY')}}<br /> 
+                                    {{event.setup.start | moment('HH:mm')}}-
+                                    {{event.setup.end | moment('HH:mm')}}
                                 </p>
                             </v-flex>
                             <v-flex xs4>
                                 <p>
-                                    <span class="subheading">DJ</span><br /><span>DJ Tobi</span><br /> Di, 25.7.18<br /> 18:00-24:00 <br />
+                                    <span class="subheading">DJ</span><br />
+                                    <span>DJ Tobi</span><br /> Di, 25.7.18<br /> 18:00-24:00 <br />
                                     <b>Mikrophon mitnehmen</b>
                                 </p>
                             </v-flex>
                             <v-flex xs4>
                                 <p>
-                                    <span class="subheading">Abbau</span><br /><span>Marc</span><br /> Di, 25.7.18<br /> 18:00-24:00
+                                    <span class="subheading">Abbau</span><br />
+                                    <span>Marc</span><br /> Di, 25.7.18<br /> 18:00-24:00
                                 </p>
                             </v-flex>
                         </v-layout>
@@ -110,67 +119,6 @@
                                     <v-checkbox></v-checkbox>
                                 </v-flex>
                             </v-layout>
-                            <v-layout row>
-                                <v-flex xs3>
-                                    <h3 class="body-2">Mikrophon</h3>
-                                    <ul>
-                                        <li>Funk Mikrophon</li>
-                                        <li>Empfänger</li>
-                                        <li>Kabel</li>
-                                        <li>8 Batterien</li>
-                                    </ul>
-                                </v-flex>
-                                <v-flex xs1>
-                                    <img src="../assets/Sennheiser XS Wireless.jpg" alt="Bidl" style="width: 100%;">
-                                </v-flex>
-                                <v-flex xs1>
-                                    <img src="../assets/lager 2.jpg" alt="Bidl" style="width: 100%;">
-                                </v-flex>
-                                <v-flex xs3 offset-xs1>
-                                    <span>Vorher bei</span> <br />
-                                    <router-link to="/event/asdf">Geburtstag Müller</router-link><br />
-                                    <span>Anschließend</span> <br />
-                                    <span>
-                                        <b>Ins Lager</b>
-                                    </span><br />
-                                </v-flex>
-                                <v-flex xs1 offset-xs1>
-                                    <v-checkbox></v-checkbox>
-                                </v-flex>
-                                <v-flex xs1>
-                                    <v-checkbox></v-checkbox>
-                                </v-flex>
-                            </v-layout>
-                            <v-layout row>
-                                <v-flex xs3>
-                                    <h3 class="body-2">Mackie</h3>
-                                    <ul>
-                                        <li>2 Boxen</li>
-                                        <li>6 XLR Kabel</li>
-                                        <li>2 Stative</li>
-                                    </ul>
-                                </v-flex>
-                                <v-flex xs1>
-                                    <img src="../assets/mackie.jpg" alt="Bidl" style="width: 100%;">
-                                </v-flex>
-                                <v-flex xs1>
-                                    <img src="../assets/lager.jpg" alt="Bidl" style="width: 100%;">
-                                </v-flex>
-                                <v-flex xs3 offset-xs1>
-                                    <span>Vorher bei</span> <br />
-                                    <router-link to="/event/asdf">Geburtstag Müller</router-link><br />
-                                    <span>Anschließend</span> <br />
-                                    <span>
-                                        <b>Ins Lager</b>
-                                    </span><br />
-                                </v-flex>
-                                <v-flex xs1 offset-xs1>
-                                    <v-checkbox></v-checkbox>
-                                </v-flex>
-                                <v-flex xs1>
-                                    <v-checkbox></v-checkbox>
-                                </v-flex>
-                            </v-layout>
                         </v-container>
                     </div>
                 </v-flex>
@@ -180,10 +128,17 @@
 </template>
 
 <script>
+import 'moment';
+
 export default {
     name: 'event',
-    data() {
-        return {};
+    computed: {
+        event() {
+            return this.$store.state.eventsModule.events[this.$route.params.id];
+        },
+        users() {
+            return this.$store.state.usersModule.users;
+        },
     },
     methods: {
     },
